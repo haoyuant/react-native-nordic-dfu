@@ -48,12 +48,8 @@ public class RNNordicDfuModule extends ReactContextBaseJavaModule implements Lif
         if (name != null) {
             starter.setDeviceName(name);
         }
-          // mimic behavior of iOSDFULibrary when packetReceiptNotificationParameter is set to `0` - see: https://github.com/NordicSemiconductor/IOS-Pods-DFU-Library/blob/master/iOSDFULibrary/Classes/Implementation/DFUServiceInitiator.swift#L115
-        if (packetReceiptNotificationParameter > 0) {
-          starter.setPacketsReceiptNotificationsValue(packetReceiptNotificationParameter);
-        } else {
-          starter.setPacketsReceiptNotificationsValue(1);
-        }
+         
+        starter.setPacketsReceiptNotificationsValue(packetReceiptNotificationParameter);
         starter.setUnsafeExperimentalButtonlessServiceInSecureDfuEnabled(true);
         if (filePath.endsWith(".bin") || filePath.endsWith(".hex")) {
             starter.setBinOrHex(DfuBaseService.TYPE_APPLICATION, filePath).setInitFile(null, null);
